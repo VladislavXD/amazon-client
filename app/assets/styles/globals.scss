@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+@font-face {
+  font-family: 'Metrika';
+  src: url('../../fonts/Metrika.otf');
+}
+
+body {
+	@apply overflow-x-hidden text-base ;
+  font-family: "Metrika", sans-serif;
+  font-weight: 200;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.disabled {
+	pointer-events: none;
+	cursor: default;
+	text-decoration: none;
+	opacity: 0.2 !important;
+}
+
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
