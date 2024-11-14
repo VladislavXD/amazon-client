@@ -18,7 +18,7 @@ const Catalog: FC<ICatalog> = ({ data, title, }) => {
   
   const [page, setPage] = useState(1)
   
-  const {data: response=[], isLoading} = useQuery({
+  const {data: response, isLoading} = useQuery({
     queryKey: ["products", page],
     queryFn: async ()=> {
       const result = await ProductService.getAll({
@@ -26,7 +26,7 @@ const Catalog: FC<ICatalog> = ({ data, title, }) => {
         perPage: 8,
         // sort
       })
-      return result.data
+      return result.data 
     }, 
     staleTime: 500,
     
@@ -38,16 +38,16 @@ const Catalog: FC<ICatalog> = ({ data, title, }) => {
       {title && <Heading>{title}</Heading>}
 
       
-      {response.length ? (
+      {response?.length ? (
         <div className="grid grid-cols-2 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-2 ">
-          {response.products.map((product, i) => (
+          {response?.products.map((product, i) => (
             <ProductItem key={product.id} product={product} />
           ))}
         </div>
       ) : (
         <div>There are no product</div>
       )}
-      <Pagination siblings={2}  total={Math.ceil(response.length / 8) } onChange={prev => setPage(prev)}   initialPage={page} />
+      <Pagination siblings={2}  total={Math.ceil(response?.length? / 8) } onChange={prev => setPage(prev)}   initialPage={page} />
         
     </div>
   );
