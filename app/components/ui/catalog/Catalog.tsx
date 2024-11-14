@@ -47,7 +47,7 @@ const Catalog: FC<ICatalog> = ({ data, title, }) => {
       ) : (
         <div>There are no product</div>
       )}
-      <Pagination siblings={2}  total={Math.ceil(response?.length? / 8) } onChange={prev => setPage(prev)}   initialPage={page} />
+      <Pagination siblings={2}  total={Math.ceil((response?.length ?? 0) / 8) } onChange={prev => setPage(prev)}   initialPage={page} />
         
     </div>
   );
