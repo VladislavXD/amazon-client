@@ -22,6 +22,7 @@ type Props = {};
 const Sidebar = (props: Props) => {
   const { profile } = useProfile();
   const {user} = useAuth()
+
   return (
     <aside className="h-[100vh] transition-all ease-in-out sm:p-6 p-3 border-e border-r-black z-10 backdrop-blur-sm opacity-90 fixed sm:w-72 w-20 mt-[64px]">
 

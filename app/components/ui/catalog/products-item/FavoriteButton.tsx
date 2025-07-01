@@ -12,11 +12,14 @@ import {
   useQueryClient,
   QueryClient,
 } from "@tanstack/react-query";
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 import { CiHeart } from "react-icons/ci";
 import { IoHeartDislikeOutline } from "react-icons/io5";
 import { PiShoppingCartSimpleThin } from "react-icons/pi";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
+
+
+import {debounce} from 'lodash'
 
 const AddToFavoriteButton: FC<{ productId: number }> = ({ productId }) => {
   const { profile } = useProfile();
@@ -32,13 +35,21 @@ const AddToFavoriteButton: FC<{ productId: number }> = ({ productId }) => {
     },
   });
 
+
+
+  const debounceMutate = useCallback(
+    debounce(()=> {
+      mutate()
+    }, 500), 
+  [mutate])
+
   if (!profile) return null;
   
   const isExists = profile.favorites.some((fav) => fav.id === productId);
 
   return (
     <div>
-      <Button aria-label="like"  isIconOnly onClick={() => mutate()}>
+      <Button aria-label="like"  isIconOnly onClick={() => debounceMutate()}>
         <HeartIcon 
         fill={`${isExists ? '#E0155D' : 'white'}`}
         filled={`${isExists ? '#E0155D' : ''}`}

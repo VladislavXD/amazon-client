@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 const twColors = require('tailwindcss/colors')
 const {nextui} = require("@nextui-org/react");
+const {heroui} = require("@heroui/react");
 
 const colors = {
 	transparent: twColors.transparent,
@@ -21,6 +22,7 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
 		"./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+		 "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     colors,
@@ -44,7 +46,11 @@ const config: Config = {
 			zIndex: {
 				1: "1",
 				2: "2",
-				3: "3"
+				3: "3",
+				4: "4",
+				5: "5",
+        '9999': '9999',
+        '99999': '99999'
 			},
 			keyframes: {
 				animationOpacity: {
@@ -73,6 +79,6 @@ const config: Config = {
 
     
   },
-  plugins: [nextui()],
+  plugins: [nextui(), heroui()],
 };
 export default config;

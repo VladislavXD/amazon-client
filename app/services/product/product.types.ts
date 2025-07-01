@@ -13,6 +13,7 @@ export type TypeProductDataFilters = {
   searchTerm?: string
   page?: string | number 
   perPage?: string | number
+  categorySlug?: string
 }
 
 export enum EnumProductSort {

@@ -19,6 +19,9 @@ import useAuthRedirect from "./useAuthRedirect";
 
 
 
+
+
+
 const Auth: FC = () => {
   useAuthRedirect()
   const { isLoading } = useAuth();
@@ -27,11 +30,16 @@ const Auth: FC = () => {
 
   const [type, setType] = useState<"login" | "register">("login");
 
+  const [err, setErr] = useState<string>('');
+
+  const {error} = useAuth()
+
   const {
     register: formRegister,
     handleSubmit,
     formState: {errors},
     reset,
+    
   } = useForm<IEmailPassword>({
     mode: "onChange",
   });
@@ -40,19 +48,17 @@ const Auth: FC = () => {
   const onsubmit: SubmitHandler<IEmailPassword> = (data) => {
     try{
       if (type === "login"){
-        login(data);
+        login(data)
       }
       else {
-        register(data);
-       
+        register(data)
       }
-    }catch(error){
-      console.log(error);
+    }catch(err){
+      console.log(err);
     }
     
     reset();
   };
-
 
 
   const {theme} = useContext(ThemeContext)
@@ -103,12 +109,15 @@ const Auth: FC = () => {
                     value: 6,
                     message: 'Min length should more 6 symbols!'
                   }
+                  
                 })}
                 type="password"
                 placeholder="Password"
                 error={errors.password?.message}
+                
                 />
 
+                <p className="text-[#920B3A] text-xs lowercase mr-2" >{error != '' ? String(error) : ''}</p>
                 <div className="flex items-center justify-between px-1 py-2">
                   <Checkbox defaultSelected color="primary" size="sm" aria-label="Remember me">Remember me</Checkbox>
                   <Link href="#" size="md" className="text-default-400 hover:text-default-300 transition-all ease-in-out">Forgot password?</Link>

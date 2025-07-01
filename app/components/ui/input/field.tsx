@@ -24,7 +24,7 @@ const Field =  forwardRef<HTMLInputElement, IField>((
 
 
   useEffect(() => {
-    if (type === 'email') {
+    if (type == 'email') {
       setIsVisible(true)
     }
   }, [type])
@@ -40,7 +40,8 @@ const Field =  forwardRef<HTMLInputElement, IField>((
         ref={ref}
         variant="bordered"
         errorMessage={error}
-        type={isVisible ? "email" : "password"}
+        type={isVisible ? "email" : "password"} 
+        // type={type}
         className="max-w-xs"
         endContent={
           type === "password" ? (

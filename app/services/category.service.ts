@@ -15,8 +15,8 @@ import { ICategory } from '../types/category.interface'
 
 export const CategoryService = {
 	async getAll() {
-		return  axiosClassic<ICategory>({
-			url: `/category`,
+		return  axiosClassic<ICategory[]>({
+			url: `/categories`,
 			method: 'GET',
 		})
 	},

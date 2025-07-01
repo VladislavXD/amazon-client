@@ -7,6 +7,8 @@ import Link from 'next/link'
 import React, { FC } from 'react'
 import { CiHeart } from "react-icons/ci";
 import { IoHeartDislikeOutline } from "react-icons/io5";
+import {addToast} from "@heroui/react";
+
 
 const AddToCartButton: FC<{product: IProduct}> = ({product}) => {
   const {addToCart, removeFromCart} = useActions()
@@ -31,14 +33,22 @@ const AddToCartButton: FC<{product: IProduct}> = ({product}) => {
       </Link>
     ) : (
       <Button
-        onClick={() =>
-          !currenElement
-            && addToCart({
-                product,
-                quantity: 1,
-                price: product.price,
-              })
-        }
+        onPress={() => {
+          if (!currenElement) {
+            addToCart({
+              product,
+              quantity: 1,
+              price: product.price,
+            });
+            addToast({
+              title: "✅ Добавлено в корзину",
+              description: `${product.name} успешно добавлен в корзину`,
+              timeout: 3000,
+              shouldShowTimeoutProgress: true,
+              hideIcon: true
+            });
+          }
+        }}
         color="primary"
         className="w-full h-9"
         variant={"shadow"}

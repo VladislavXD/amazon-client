@@ -8,7 +8,8 @@ import { getStoreLocal } from '@/app/utils/localStorage'
 
 const initialState: IInitialState = {
 	user: getStoreLocal('user'),
-	isLoading: false
+	isLoading: false,
+	error: null
 }
 
 export const userSlice = createSlice({
@@ -24,9 +25,11 @@ export const userSlice = createSlice({
 				state.isLoading = false
 				state.user = payload.user
 			})
-			.addCase(register.rejected, state => {
-				state.isLoading = false
-				state.user = null
+			.addCase(register.rejected, (state, action) => {
+				state.isLoading = false;
+				state.user = null;
+				state.error = action.payload as string; 
+			
 			})
 			.addCase(login.pending, state => {
 				state.isLoading = true
@@ -35,9 +38,10 @@ export const userSlice = createSlice({
 				state.isLoading = false
 				state.user = payload.user
 			})
-			.addCase(login.rejected, state => {
+			.addCase(login.rejected, (state, action) => {
 				state.isLoading = false
 				state.user = null
+				state.error = action.payload as string
 			})
 			.addCase(logout.fulfilled, state => {
 				state.isLoading = false

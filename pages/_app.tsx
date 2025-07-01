@@ -11,6 +11,7 @@ import {
   ThemeProvider,
 } from "next-themes";
 
+import { HeroUIProvider, ToastProvider } from "@heroui/react";
 import { persistor, store } from "@/app/store/store";
 import { AppProps } from "next/app";
 import AuthProvider from "@/app/providers/authProvider/AuthProvider";
@@ -39,7 +40,13 @@ export default function App({
             {/* @ts-ignore */}
             <PersistGate loading={null} persistor={persistor}>
               <AuthProvider Component={{ isOnlyUser: Component.isOnlyUser }}>
+                {/* Провайдер для отображения Toast */}
+                <HeroUIProvider>
+                  {/* Сам Toast для отображения уведомлений */}
+                  <ToastProvider placement="bottom-right" />
+
                   <Component {...pageProps} />
+                </HeroUIProvider>
               </AuthProvider>
             </PersistGate>
           </ReduxProvider>

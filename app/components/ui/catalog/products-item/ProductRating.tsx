@@ -18,7 +18,7 @@ const ProductRating: FC<{product: IProduct}> = ({product}) => {
 
 
   return (
-    <div className=' items-center flex'>
+    <div className='flex items-center'>
         <Rating
           readonly
           initialValue={rating}
@@ -29,7 +29,7 @@ const ProductRating: FC<{product: IProduct}> = ({product}) => {
           allowFraction
           transition
         />
-        <span className='sm:text-sm text-xs text-bg-color '>{rating}</span>
+        <span className='sm:text-sm text-xs text-bg-color pt-2 pl-1'>{rating}</span>
        
     </div>
   )

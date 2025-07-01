@@ -13,6 +13,7 @@ export interface ITokens {
 export interface IInitialState {
 	user: IUserState | null
 	isLoading: boolean
+	error?: string | undefined | unknown | { message: string };
 }
 
 export interface IEmailPassword {
