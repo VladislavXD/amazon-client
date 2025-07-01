@@ -12,16 +12,16 @@ const HomePage: NextPage<TypePaginationProducts> = ({length, products}) => {
 }
 
 
-export const getStaticProps: GetStaticProps<TypePaginationProducts> 
-= async ()=> {  
-  const {data} = await ProductService.getAll({
-    page: 1,
-    perPage: 17
-  })
-  return {
-    props: data
-  }
-}
+// export const getStaticProps: GetStaticProps<TypePaginationProducts> 
+// = async ()=> {  
+//   const {data} = await ProductService.getAll({
+//     page: 1,
+//     perPage: 17
+//   })
+//   return {
+//     props: data
+//   }
+// }
 
 
 export default HomePage
