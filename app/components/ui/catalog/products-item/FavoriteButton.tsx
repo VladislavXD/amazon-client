@@ -12,23 +12,14 @@ import {
   useQueryClient,
   QueryClient,
 } from "@tanstack/react-query";
-import React, { FC, useCallback, useRef } from "react";
+import React, { FC, useCallback } from "react";
 // import { CiHeart } from "react-icons/ci";
 // import { IoHeartDislikeOutline } from "react-icons/io5";
 // import { PiShoppingCartSimpleThin } from "react-icons/pi";
 // import { PiShoppingCartSimpleFill } from "react-icons/pi";
 
-// Простая реализация debounce без внешних зависимостей
-const useDebounce = (callback: () => void, delay: number) => {
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  return useCallback(() => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    timeoutRef.current = setTimeout(callback, delay);
-  }, [callback, delay]);
-};
+import {debounce} from 'lodash'
 
 const AddToFavoriteButton: FC<{ productId: number }> = ({ productId }) => {
   const { profile } = useProfile();
