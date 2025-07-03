@@ -43,32 +43,51 @@ const Catalog: FC<ICatalog> = ({ data, title, isPagination = false}) => {
       
   })
 
-  
 
 
-    if (isLoading) return <Spinner size="md" className="flex justify-center items-center h-screen"/>;
+
 
   
 
   return (
-    <div className="w-[1200px] max-w-full mx-auto ease-linear transition-all">
-
-      {title && <Heading>{title}</Heading>}
-
+    <>
       
-      {isPagination ? (<SelectCategory/>) : null}
-      {response?.length ? (
-        <div className="grid grid-cols-2 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-2 ">
-          {response?.products.map((product, i) => (
-            <ProductItem key={product.id} product={product} />
-          ))}
-        </div>
-      ) : (
-        <div>There are no product</div>
-      )}
-      <Pagination siblings={2}  total={Math.ceil((response?.length ?? 0) / 8) } onChange={prev => setPage(prev)}   initialPage={page} />
+      <div className="w-[1200px] max-w-full mx-auto ease-linear transition-all">
+
+        {title && <Heading>{title}</Heading>}
+
+        {isPagination ? (<SelectCategory/>) : null}
         
-    </div>
+        {isLoading ? (
+          <div className="flex justify-center items-center h-64">
+            <Spinner size="md" />
+          </div>
+        ) : (
+          <>
+            {response?.length ? (
+              <div className="grid grid-cols-2 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-2 ">
+                {response?.products.map((product, i) => (
+                  <ProductItem key={product.id} product={product} />
+                ))}
+              </div>
+            ) : (
+              <div>There are no product</div>
+            )}
+            
+            {response?.length ? (
+              <Pagination 
+                siblings={2}  
+                total={Math.ceil((response?.length ?? 0) / 8)} 
+                onChange={prev => setPage(prev)}   
+                page={page}
+                className="mt-4 flex justify-center"
+              />
+            ) : null}
+          </>
+        )}
+          
+      </div>
+    </>
   );
 };
 

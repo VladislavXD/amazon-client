@@ -7,14 +7,21 @@ import { IAuthResponse, IEmailPassword } from '@/app/store/user/user.interface'
 import {  } from '@/app/store/user/user.interface'
 import axios from 'axios'
 import { instance } from '@/app/api/api.interceptor'
-import { IOrder } from '../types/order.interface'
+import { EnumOrderStatus, IOrder } from '../types/order.interface'
+import { ICartItem } from '../types/cart.interface'
 
 
 
 type TypeData = {
-	rating: number,
-	text: string
+	status?: EnumOrderStatus,
+	items: {
+	quantity: number
+		price: number
+		productId: number
+	}[]
 }
+
+
 
 export const OrdersService = {
 	async getAll() {
@@ -22,7 +29,15 @@ export const OrdersService = {
 			url: `/orders`,
 			method: 'GET',
 		})
-	}
+	},
 
+
+	async placeOrder(data: TypeData) {
+		return  instance<{confirmation: {confirmation_url: string}}>({
+			url: `/orders`,
+			method: 'POST',
+			data
+		})
+	},
 
 }

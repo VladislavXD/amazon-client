@@ -10,13 +10,16 @@ import { convertPrice } from "@/app/utils/ConvertPrice";
 
 import { IoEyeSharp } from "react-icons/io5";
 import { Image } from "@nextui-org/react";
-const ProductItem: FC<{ product: IProduct }> = ({ product }) => {
+const FavoriteProductItem: FC<{ product: IProduct }> = ({ product }) => {
 
   return (
     <div className=" rounded-lg border-small w-[250px] mb-7  max-w-full">
       <div className="max-w-full sm:h-[350px] h-[180px] overflow-hidden relative z-3">
         <Link href={`/product/${product.slug}`}>
+            
           <Image
+            isBlurred
+            isZoomed
             className=" max-w-full sm:max-h-[350px] max-h-[250px] rounded-lg h-full object-cover bg-cover"
             width={300}
             height={300}
@@ -32,14 +35,8 @@ const ProductItem: FC<{ product: IProduct }> = ({ product }) => {
         <Link href={`/product/${product.slug}`}>
           <h3 className="md:text-md overflow-ellipsis whitespace-nowrap overflow-hidden sm:w-[150px] md:w-[143px] lg:w-[190px]  sm:text-sm text-xs">{product.name}</h3>
         </Link>
-        <Link href={`/category/${product.category.slug }`}>
-          {" "}
-          <div className="sm:text-sm text-xs  opacity-50">{product?.category?.name}</div>
-        </Link>
-        <ProductRating product={product} />
         <div className="flex justify-between">
           <span className="sm:text-md text-sm">{convertPrice(product.price)}</span>
-          <span className="flex items-center  sm:text-sm gap-1 opacity-50 text-xs"><IoEyeSharp/> <p>{product.reviews.length}</p> </span>
         </div>
         <AddToCartButton product={product} />
       </div>
@@ -47,4 +44,4 @@ const ProductItem: FC<{ product: IProduct }> = ({ product }) => {
   );
 };
 
-export default ProductItem;
+export default FavoriteProductItem;

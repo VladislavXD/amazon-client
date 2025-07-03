@@ -33,7 +33,7 @@ const SelectCategory: FC = () => {
 
   const handleSort = (keys: any) => {
     const selectSort = Array.from(keys)[0] as string;
-
+    
     router.push({
       pathname: router.pathname,
       query: { ...router.query, sort: selectSort },
