@@ -20,6 +20,6 @@ export const carouselSlice = createSlice({
 		},
 		selectSlide: (state, action: PayloadAction<number>) => {
 			state.selectedItemIndex = action.payload
-		}
+		}	
 	}
 })

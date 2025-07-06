@@ -1,0 +1,69 @@
+/* Carousel responsive styles */
+.mySwiper {
+  width: 100%;
+  position: relative;
+}
+
+.mySwiper .swiper-slide {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Обеспечиваем правильное отображение видео и изображений */
+.mySwiper .swiper-slide video,
+.mySwiper .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Мобильные устройства */
+@media (max-width: 640px) {
+  .mySwiper {
+    height: 250px !important;
+  }
+}
+
+/* Планшеты */
+@media (min-width: 641px) and (max-width: 768px) {
+  .mySwiper {
+    height: 300px !important;
+  }
+}
+
+/* Маленькие десктопы */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .mySwiper {
+    height: 350px !important;
+  }
+}
+
+/* Десктопы и больше - фиксированная высота 433px */
+@media (min-width: 1024px) {
+  .mySwiper {
+    height: 433px !important;
+  }
+}
+
+/* Обеспечиваем правильные пропорции для всех слайдов */
+.mySwiper .swiper-slide {
+  aspect-ratio: auto;
+}
+
+/* Стили для контента поверх слайдов */
+.mySwiper .absolute {
+  z-index: 2;
+}
+
+/* Плавные переходы */
+.mySwiper .swiper-slide {
+  transition: all 0.3s ease;
+}
+
+/* Параллакс эффекты */
+.mySwiper :global([data-swiper-parallax]) {
+  transition: transform 0.3s ease;
+}

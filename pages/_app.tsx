@@ -19,6 +19,7 @@ import { TypeComponentAuthFields } from "@/app/providers/authProvider/authPage.t
 import { ThemeContext } from "@/app/providers/theme-provider";
 import Layout from "@/app/components/ui/layout/Layout";
 
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

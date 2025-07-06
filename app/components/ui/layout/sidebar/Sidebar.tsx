@@ -21,6 +21,7 @@ import { FaBorderTopLeft } from "react-icons/fa6";
 import { usePathname } from 'next/navigation';
 import { useQuery } from "@tanstack/react-query";
 import { OrdersService } from "@/app/services/order.service";
+import { useOrders } from "@/app/hooks/useOrder";
 
 type Props = {};
 
@@ -28,13 +29,9 @@ const Sidebar = (props: Props) => {
   const { profile } = useProfile();
   const { user } = useAuth();
   const pathname = usePathname();
+  const {orders} = useOrders();
 
-  const { data: orders } = useQuery({
-    queryKey: ["my-orders"],
-    queryFn: async () => await OrdersService.getAll(),
-    select: ({ data }) => data,
-    staleTime: 500,
-  });
+  console.log(user);
 
 
   return (
@@ -49,6 +46,7 @@ const Sidebar = (props: Props) => {
             <DropdownTrigger>
               <User
                 as="button"
+                key={profile?.id}
                 avatarProps={{
                   isBordered: true,
                   src: `${profile?.avatarUrl}`,
@@ -68,7 +66,7 @@ const Sidebar = (props: Props) => {
                   {profile?.email}
                 </p>
               </DropdownItem>
-              <DropdownItem key="settings">My Settings</DropdownItem>
+              <DropdownItem key="settings" ><Link className='block w-full h-full' href={'profile'}>Profile</Link></DropdownItem>
             </DropdownMenu>
           </Dropdown>
         ) : (

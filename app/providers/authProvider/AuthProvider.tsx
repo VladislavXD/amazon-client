@@ -27,13 +27,14 @@ const AuthProvider: FC<PropsWithChildren<TypeComponentAuthFields>> =
     if(accesToken){
       checkAuth()
     }
-  }, [])
+  }, [checkAuth])
+  
   useEffect(()=> {
     const refreshToken = Cookies.get('refreshToken')
     if(!refreshToken && user){
       logout()
     }
-  }, [pathname])
+  }, [pathname, user, logout])
 
 
   return isOnlyUser? (

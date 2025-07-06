@@ -8,7 +8,7 @@ interface IHeading {
 
 
 const Heading:FC<PropsWithChildren<IHeading>> = ({className, children}) => {
-  return <h1 className={cn('font-semibold sm:text-3xl text-2xl', className)}>{children}</h1>
+  return <h1 className={cn('font-semibold sm:text-3xl text-2xl text-warning-900', className)}>{children}</h1>
 } 
 
 

@@ -1,0 +1,105 @@
+/* Carousel адаптивные стили */
+.mySwiper {
+  width: 100%;
+  position: relative;
+}
+
+/* Обеспечиваем одинаковые пропорции для всех слайдов */
+.mySwiper .swiper-slide {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mySwiper .swiper-slide > div {
+  width: 100%;
+  height: 100%;
+}
+
+/* Адаптивные размеры контейнера */
+@media (max-width: 640px) {
+  .mySwiper {
+    margin: 1rem;
+    aspect-ratio: 4/3; /* Более квадратный на мобильных */
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .mySwiper {
+    margin: 1.5rem;
+    aspect-ratio: 16/10; /* Промежуточное соотношение для планшетов */
+  }
+}
+
+@media (min-width: 1025px) {
+  .mySwiper {
+    margin: 2rem auto;
+    aspect-ratio: 16/9; /* Стандартное соотношение для десктопа */
+  }
+}
+
+/* Обеспечиваем правильное позиционирование контента */
+.mySwiper .swiper-slide .absolute {
+  z-index: 10;
+}
+
+/* Плавные переходы для анимаций */
+.mySwiper [data-swiper-parallax] {
+  transition: transform 0.3s ease-out;
+}
+
+/* Адаптивная типографика */
+@media (max-width: 480px) {
+  .mySwiper .title {
+    font-size: 1.25rem !important;
+    line-height: 1.3;
+  }
+  
+  .mySwiper .subtitle {
+    font-size: 0.75rem !important;
+    line-height: 1.4;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .mySwiper .title {
+    font-size: 1.75rem !important;
+    line-height: 1.3;
+  }
+  
+  .mySwiper .subtitle {
+    font-size: 0.875rem !important;
+    line-height: 1.4;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .mySwiper .title {
+    font-size: 2.25rem !important;
+    line-height: 1.2;
+  }
+  
+  .mySwiper .subtitle {
+    font-size: 1rem !important;
+    line-height: 1.5;
+  }
+}
+
+/* Оптимизация видео */
+.mySwiper video {
+  pointer-events: none;
+  object-fit: cover;
+}
+
+/* Обеспечиваем правильное отображение изображений Next.js */
+.mySwiper img {
+  object-fit: cover !important;
+}
+
+/* Тени и эффекты */
+.mySwiper {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-radius: 1.5rem;
+}

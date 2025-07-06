@@ -9,7 +9,8 @@ import { ProductService } from "@/app/services/product/product.service";
 import { Pagination, Spinner } from "@nextui-org/react";
 import SelectCategory from "./SelectCategory";
 import { useRouter } from "next/router";
-
+import Carousel from "../carousel/Carousel";
+import { carouselItems } from "../carousel/carousel.data";
 
 interface ICatalog {
   data: TypePaginationProducts;
@@ -51,9 +52,10 @@ const Catalog: FC<ICatalog> = ({ data, title, isPagination = false}) => {
 
   return (
     <>
-      
+
       <div className="w-[1200px] max-w-full mx-auto ease-linear transition-all">
 
+        <Carousel items={carouselItems}/>
         {title && <Heading>{title}</Heading>}
 
         {isPagination ? (<SelectCategory/>) : null}

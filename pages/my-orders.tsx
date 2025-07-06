@@ -78,4 +78,4 @@ const MyOrders: NextPage = () => {
   );
 };
 
-export default MyOrders;
+export default MyOrders
