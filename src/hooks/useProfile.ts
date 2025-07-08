@@ -10,7 +10,7 @@ export const useProfile = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['get profile'],
     queryFn: () => UserService.getProfile(),
-    select: ({data}) => data ,
+    select: (data) => data ,
     
     enabled: !!user,
     retry: 1,
