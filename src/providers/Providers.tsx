@@ -7,10 +7,11 @@ import { Provider as ReduxProvider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { NextUIProvider } from '@nextui-org/react'
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
-import { HeroUIProvider, ToastProvider } from '@heroui/react'
+import { HeroUIProvider, Spinner, ToastProvider } from '@heroui/react'
 
 import { persistor, store } from '@/src/store/store'
 import AuthProvider from '@/src/providers/authProvider/AuthProvider'
+import NextTopLoader from 'nextjs-toploader'
 
 // Оптимизированный QueryClient
 function makeQueryClient() {
@@ -74,7 +75,17 @@ export default function Providers({ children }: PropsWithChildren) {
   return (
     <QueryClientProvider client={queryClient}>
       <ReduxProvider store={store}>
-        <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
+        <PersistGate loading={<div className=''><NextTopLoader
+          color="#2299DD"
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          showSpinner={true}
+          easing="ease"
+          speed={200}
+          shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+        /></div>} persistor={persistor}>
           <NextUIProvider>
             <ThemeWrapper>
               <HeroUIProvider>

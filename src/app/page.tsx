@@ -1,7 +1,9 @@
+
 import type { Metadata } from 'next'
 
 import Home from '@/src/app/Home'
 import { ProductService } from '../services/product/product.service'
+
 
 export const metadata: Metadata = {
 	description:
