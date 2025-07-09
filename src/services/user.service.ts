@@ -19,11 +19,10 @@ type TypeData = {
 
 export const UserService = {
   async getProfile() {
-    const {data} = await instance<IFullUser>({
+    return instance<IFullUser>({
       url: `/users/profile`,
       method: "GET",
     });
-    return data;
   },
   async updateProfile(data: TypeData) {
     return instance<IUser>({
