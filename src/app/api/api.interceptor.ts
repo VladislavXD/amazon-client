@@ -19,6 +19,9 @@ export const instance = axios.create(axiosOptions)
 
 instance.interceptors.request.use( config => {
   const accessToken = getAccessToken()
+  
+  console.log('Making request to:', config.url)
+  console.log('Access token exists:', !!accessToken)
 
   if(config.headers && accessToken)
     config.headers.Authorization = `Bearer ${accessToken}`
@@ -29,6 +32,8 @@ return config
 instance.interceptors.response.use(
   config => config,
   async error => {  
+    console.log('API Error:', error.response?.status, error.response?.data)
+    
     const originalRequest = error.config
 
     if
@@ -39,16 +44,19 @@ instance.interceptors.response.use(
         &&
         error.config && !error.config._isRetry
     ){
+      console.log('Attempting to refresh tokens...')
       originalRequest._isRetry = true
       try{
         await AuthService.getNewTokens()
-        // new 1token
+        console.log('Tokens refreshed successfully')
         return instance.request(originalRequest)
       }catch(error){
+        console.log('Token refresh failed:', error)
         if(errorCatch(error) === 'jwt expired') 
-          // delete token 
           removeFromStorage()
       }
     }
+    
+    throw error
   }
 )
