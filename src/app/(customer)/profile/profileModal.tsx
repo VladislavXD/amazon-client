@@ -49,7 +49,7 @@ export default function ProfileModal({
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Edit Profile
+                Edit Profile (in development)
               </ModalHeader>
               <ModalBody className="flex  ">
                 <div className="gap-4 w-full">

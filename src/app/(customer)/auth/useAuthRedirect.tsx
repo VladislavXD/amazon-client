@@ -3,12 +3,18 @@ import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
 const useAuthRedirect = () => {
-  const {user} =  useAuth()
+  const {user, isLoading} =  useAuth()
 
   const {replace} = useRouter()
 
   useEffect(()=> {
-    if(user) replace('/')
+    if (isLoading) return
+    if(user) {
+      // Добавляем небольшую задержку для корректной синхронизации
+
+        replace('/')
+
+    }
   }, [user])
 }
 

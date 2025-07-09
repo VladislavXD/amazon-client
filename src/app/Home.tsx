@@ -2,8 +2,7 @@
 
 import React, { FC } from 'react'
 import Catalog from './components/ui/catalog/Catalog'
-import { TypePaginationProducts, TypeProducts } from '@/src/types/product.interface'
-import Heading from './components/Heading'
+import { TypePaginationProducts } from '@/src/types/product.interface'
 
 
 

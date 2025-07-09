@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 		'Free shipping on millions of items. Get the best of Shopping and Entertainment with Prime.'
 }
 
-export const revalidate = 60
+
 
 async function getProducts() {
 	const data = await ProductService.getAll({

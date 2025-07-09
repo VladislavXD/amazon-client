@@ -9,6 +9,7 @@ import { useAuth } from "@/src/hooks/useAuth";
 import { ReadonlyURLSearchParams} from "next/navigation";
 import { useSearchParams } from "next/navigation";
 
+
 const SelectCategory: FC = () => {
   const router = useRouter();
 

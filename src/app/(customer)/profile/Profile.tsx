@@ -12,16 +12,16 @@ import { useDisclosure } from "@heroui/react";
 import ProfileModal from "./profileModal";
 
 
+
 const Profile: NextPage = () => {
   const { profile } = useProfile();
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
-  
+
 
   return (
 
 
        <>
-       
         <Heading>
           <h1 className="text-4xl text-warning-800 font-bold p-5">Profile</h1>
         </Heading>
@@ -30,6 +30,7 @@ const Profile: NextPage = () => {
         </section> */}
          <div className="flex flex-col md:flex-row bg-[#171717] w-full max-w-4xl mx-auto p-6 md:p-9 rounded-2xl gap-6">
           {/* Аватарка */}
+
           <div className="flex-shrink-0 mx-auto md:mx-0 md:flex">
             <Image
               key={profile?.id}
