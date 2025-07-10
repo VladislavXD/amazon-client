@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 
 
 import { NO_INDEX_PAGE } from '../../constants/seo.constants'
-import MyOrders from './MyOrders'
+import ViewsHistory from './ViewHistory'
 
 export const metadata: Metadata = {
 	title: 'Profile',
@@ -11,5 +11,5 @@ export const metadata: Metadata = {
 }
 
 export default function ProfilePage() {
-	return <MyOrders />
+	return <ViewsHistory />
 }

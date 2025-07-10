@@ -7,6 +7,10 @@
   categoryId: number
 }
 
+export type ProductViews = {
+  productId: string | number
+  viewsCount: number
+}
 
 export type TypeProductDataFilters = {
   sort?: EnumProductSort
@@ -16,6 +20,8 @@ export type TypeProductDataFilters = {
   categorySlug?: string
   ratings?: string
 }
+
+
 
 export enum EnumProductSort {
   HIGH_PRICE = 'high-price',

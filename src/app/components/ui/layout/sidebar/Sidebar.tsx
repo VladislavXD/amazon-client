@@ -24,6 +24,9 @@ import { usePathname } from 'next/navigation';
 import { useQuery } from "@tanstack/react-query";
 import { OrdersService } from "@/src/services/order.service";
 import { useOrders } from "@/src/hooks/useOrder";
+import { LiaHistorySolid } from "react-icons/lia";
+
+
 
 type Props = {};
 
@@ -128,6 +131,31 @@ const Sidebar = (props: Props) => {
              flex justify-start pl-3 py-6 text-default-600 `}
           >
             <p className="sm:block hidden pt-1 pl-2">Favorites</p>
+          </Button>
+          
+          <Button
+            isIconOnly
+            as={Link}
+            href="recently-products"
+            variant={pathname === '/recently-products' ? 'shadow' : 'flat'}
+            startContent={
+              // <Badge
+              //   content={profile?.favorites.length}
+              //   color="danger"
+              //   placement="top-left"
+              //   className={`${
+              //     !profile?.favorites.length && " opacity-0"
+              //   } 
+              //   transition-all ease-in-out`}
+              // >
+                <LiaHistorySolid className="text-default-600 size-8 " />
+              // </Badge>
+            }
+            className={`w-full  rounded-large 
+               ${pathname === '/recently-products' ? 'bg-[#28292D]' : 'bg-[#000] hover:bg-[rgb(25,23,29)]'}
+             flex justify-start pl-3 py-6 text-default-600 `}
+          >
+            <p className="sm:block hidden pt-1 pl-2">Recently</p>
           </Button>
 
           {user && (

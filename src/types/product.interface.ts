@@ -1,5 +1,9 @@
 import { ICategory } from './category.interface'
 import { IReview } from './review.interface'
+import { IViews } from './views.interface'
+
+
+
 
 export interface IProduct {
 	id: number
@@ -11,6 +15,8 @@ export interface IProduct {
 	images: string[]
 	createdAt: string
 	category: ICategory
+	viewsCount: number 
+	views: IViews[]
 }
 
 export interface IProductDetails {

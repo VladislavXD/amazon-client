@@ -10,6 +10,7 @@ import { convertPrice } from "@/src/app/utils/ConvertPrice";
 
 import { IoEyeSharp } from "react-icons/io5";
 import { Image } from "@nextui-org/react";
+import ProductViewsCount from "./ProductViewsCount";
 const FavoriteProductItem: FC<{ product: IProduct }> = ({ product }) => {
 
   return (
@@ -37,6 +38,10 @@ const FavoriteProductItem: FC<{ product: IProduct }> = ({ product }) => {
         </Link>
         <div className="flex justify-between">
           <span className="sm:text-md text-sm">{convertPrice(product.price)}</span>
+           <ProductViewsCount
+            productId={product.id} 
+            initialCount={product.viewsCount || 0}
+          />
         </div>
         <AddToCartButton product={product} />
       </div>

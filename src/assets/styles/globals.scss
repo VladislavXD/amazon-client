@@ -41,3 +41,8 @@ body {
     text-wrap: balance;
   }
 }
+
+
+.swiper-wrapper {
+  transition-timing-function: linear !important;
+}

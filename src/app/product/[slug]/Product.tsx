@@ -24,6 +24,9 @@ import { ProductService } from "@/src/services/product/product.service";
 import AddToFavoriteButton from "../../components/ui/catalog/products-item/FavoriteButton";
 import { ProductsGallery } from "./ProductsGalery";
 import ProductRating from "../../components/ui/catalog/products-item/ProductRating";
+import { useAuth } from "@/src/hooks/useAuth";
+import { useProfile } from "@/src/hooks/useProfile";
+import { useProductPageView } from "../../../hooks/useProductViews";
 
 interface IProductPage {
   initialProduct: IProduct;
@@ -36,6 +39,9 @@ const Product = ({
   similarProducts,
   slug = "",
 }: IProductPage) => {
+  // Автоматически добавляем просмотр при загрузке страницы
+  useProductPageView(initialProduct.id);
+  
   const colorOptions = [
     { label: "Серый", value: "#808080" },
     { label: "Белый", value: "#ffffff" },
@@ -47,6 +53,8 @@ const Product = ({
 
   const [selectedColor, setSelectedColor] = useState("#FF0000");
   const [selectedSize, setSelectedSize] = useState("36");
+
+
 
   const accordionContent = [
     {
@@ -96,10 +104,13 @@ const Product = ({
     queryFn: async () => {
       return ProductService.getBySlug(slug);
     },
+    
     initialData: initialProduct,
     enabled: !!slug,
   });
+    console.log("ProductService.getBySlug RESPONSE", product);
   
+
   
   
   return (

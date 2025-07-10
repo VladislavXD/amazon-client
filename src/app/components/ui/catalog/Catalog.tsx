@@ -10,9 +10,11 @@ import { ProductService } from "@/src/services/product/product.service";
 import { Pagination, Spinner } from "@nextui-org/react";
 import SelectCategory from "./SelectCategory";
 import { ReadonlyURLSearchParams, useRouter, useSearchParams } from "next/navigation";
-import Carousel from "../carousel/Carousel";
-import { carouselItems } from "../carousel/carousel.data";
+import Carousel from "../carousel/HeaderCarousel/Carousel";
+import { carouselItems } from "../carousel/HeaderCarousel/carousel.data";
 import Link from "next/link";
+import ProductsCarousel from "../carousel/ProductsCarousel/Carousel";
+import { usePopularProducts } from "@/src/hooks/usePopular";
 
 interface ICatalog {
   data: TypePaginationProducts;
@@ -27,11 +29,14 @@ const Catalog: FC<ICatalog> = ({ data, title, isPagination = false}) => {
 
   const categoryFromQuery = searchParams.get('category') || 'all';
   const sortFromQuery = searchParams.get('sort') || 'newest';
+
+
   // Сбрасываем страницу на 1 при изменении категории
   useEffect(() => {
     setPage(1);
   }, [categoryFromQuery, sortFromQuery]);
   
+
   const {data: response, isLoading} = useQuery({
     queryKey: ["products", page, categoryFromQuery, sortFromQuery],
     queryFn: async ()=> {
@@ -49,18 +54,23 @@ const Catalog: FC<ICatalog> = ({ data, title, isPagination = false}) => {
 
 
 
-
-
   
 
+  const {popularProducts} = usePopularProducts()
   return (
     <>
 
       <div className="w-[1200px] max-w-full mx-auto ease-linear transition-all">
 
         <Carousel items={carouselItems}/>
+        {
+          popularProducts?.length ? (
+          <ProductsCarousel products={popularProducts} title="Popular Products"/>
+        ) : <Spinner size="md" className="w-full flex items-center justify-center"/>
+        
+        }
         {title && <Heading>{title}</Heading>}
-
+        {/* @ts-ignore */}
         {isPagination ? (<SelectCategory/>) : null}
 
 
@@ -69,6 +79,7 @@ const Catalog: FC<ICatalog> = ({ data, title, isPagination = false}) => {
             <Spinner size="md" />
           </div>
         ) : (
+
           <>
             {response?.length ? (
               <div className="grid grid-cols-2 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-2 ">
