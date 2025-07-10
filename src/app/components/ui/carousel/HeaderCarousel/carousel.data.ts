@@ -1,4 +1,4 @@
-import { ICarouselItem } from "../carousel.interface"
+import { ICarouselItem } from "./carousel.interface";
 import slide1 from "@/publick/images/carouselBg/slide1.jpg";
 import slide2 from "@/publick/images/carouselBg/slide3.jpg";
 

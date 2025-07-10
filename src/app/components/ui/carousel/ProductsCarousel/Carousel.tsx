@@ -10,9 +10,7 @@ import "swiper/css/pagination";
 // import required modules
 import { FreeMode, Pagination, Autoplay } from "swiper/modules";
 import ProductItem from "../../catalog/products-item/ProductItem";
-import { IProduct, TypePaginationProducts } from "@/src/types/product.interface";
-import { useQuery } from "@tanstack/react-query";
-import { ProductService } from "@/src/services/product/product.service";
+import { IProduct } from "@/src/types/product.interface";
 import Heading from "../../../Heading";
 
 interface IProductsCarouselProps {
