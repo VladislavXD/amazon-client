@@ -17,3 +17,14 @@ export const useProfile = () => {
   
   return { profile: data, isLoading, isError}
 }
+
+
+// export const useUpdateProfile = () => {
+//   const { user} = useAuth()
+//   return useQuery({
+//     queryKey: ['update profile'],
+//     queryFn: (data: any) => UserService.updateProfile(data),
+//     enabled: !!user,
+//     select: ({data}) => data
+//   });
+// }

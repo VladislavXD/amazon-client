@@ -24,10 +24,20 @@ export const UserService = {
       method: "GET",
     });
   },
+
+  
   async updateProfile(data: TypeData) {
     return instance<IUser>({
       url: `/users/profile`,
       method: "PUT",
+      data
+    });
+  },
+  
+  async uploadAvatar(data: TypeData) {
+    return instance<IUser>({
+      url: `/users/avatar`,
+      method: "POST",
       data
     });
   },

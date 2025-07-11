@@ -76,8 +76,8 @@ const Sidebar = (props: Props) => {
                 </Link>
               </DropdownItem>
               <DropdownItem key="Lgout" color="danger" className="text-danger">
-                {/* @ts-ignore */}
-                <Link className="block w-full h-full" href={"/profile"} onClick={onOpen} onPress={onOpen}>
+                
+                <Link className="block w-full h-full" href={"/profile"} onClick={onOpen}>
                   Logout
                 </Link>
               </DropdownItem>

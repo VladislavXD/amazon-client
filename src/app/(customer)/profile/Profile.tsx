@@ -10,6 +10,7 @@ import { useProfile } from "@/src/hooks/useProfile";
 import ProfileDropdown from "./profileDropdown";
 import { useDisclosure } from "@heroui/react";
 import ProfileModal from "./profileModal";
+import ImageInput from "./ImageInput";
 
 
 
@@ -32,15 +33,8 @@ const Profile: NextPage = () => {
           {/* Аватарка */}  
 
           <div className="flex-shrink-0 mx-auto md:mx-0 md:flex">
-            <Image
-              key={profile?.id}
-              isBlurred
-              alt="Profile Avatar"
-              className=" rounded-3xl"
-              src={profile?.avatarUrl}
-              width={220}
-              height={220}
-            />
+          
+            <ImageInput initialImage={profile?.avatarUrl}/>
           </div>
           
           {/* Divider - показывается только на десктопе */}
@@ -67,7 +61,7 @@ const Profile: NextPage = () => {
             </p>
             <div className="pt-9 flex-col gap-4">
               <p className="flex items-center gap-2"><MdOutlinePhoneEnabled/> {profile?.phone}</p>
-              <p className="flex items-center gap-2"><MdOutlineDescription/> <span className="text-default-300">Description</span></p>
+              <p className="flex items-center gap-2"><MdOutlineDescription/> {profile?.description === undefined ? 'Write about yourself' : (<p className={profile?.description ? 'text-default-800' : 'text-default-300'}>{profile?.description}</p>)}</p>
             </div>
           </div>
             <ProfileModal isOpen={isOpen} onOpenChange={onOpenChange}/>
