@@ -3,18 +3,22 @@ import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Radio
 import React from 'react'
 import { CiCircleMinus } from "react-icons/ci";
 
-type Props = {}
 
-const LogOut = (props: Props) => {
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+
+const LogOutModal = ({
+  isOpen,
+  onOpenChange,
+}: {
+  isOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}) => {
+  const {onOpen} = useDisclosure();
 
   const {logout} = useActions()
 
   return (
     <div className="absolute">
-    <Button isIconOnly  startContent={<CiCircleMinus className='size-7 sm:m-0 m-auto'/>} onPress={onOpen} className=" sm:w-60 text-sm pl-0 sm:pl-3 flex justify-start " color='danger' variant='bordered'>
-      <p className='sm:block hidden'>Log out</p>
-    </Button>
+    
     <Modal
       isOpen={isOpen} 
       placement={'auto'}
@@ -46,4 +50,4 @@ const LogOut = (props: Props) => {
   )
 }
 
-export default LogOut
+export default LogOutModal

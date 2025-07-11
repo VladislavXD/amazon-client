@@ -29,7 +29,7 @@ const Profile: NextPage = () => {
         
         </section> */}
          <div className="flex flex-col md:flex-row bg-[#171717] w-full max-w-4xl mx-auto p-6 md:p-9 rounded-2xl gap-6">
-          {/* Аватарка */}
+          {/* Аватарка */}  
 
           <div className="flex-shrink-0 mx-auto md:mx-0 md:flex">
             <Image

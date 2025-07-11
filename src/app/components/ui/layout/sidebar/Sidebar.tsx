@@ -8,6 +8,7 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
+  useDisclosure,
   User,
 } from "@nextui-org/react";
 import Link from "next/link";
@@ -25,6 +26,7 @@ import { useQuery } from "@tanstack/react-query";
 import { OrdersService } from "@/src/services/order.service";
 import { useOrders } from "@/src/hooks/useOrder";
 import { LiaHistorySolid } from "react-icons/lia";
+import LogOutModal from "./Modal";
 
 type Props = {};
 
@@ -33,6 +35,7 @@ const Sidebar = (props: Props) => {
   const { user } = useAuth();
   const pathname = usePathname();
   const { orders } = useOrders();
+  const {onOpen, isOpen, onOpenChange} = useDisclosure();
 
   return (
     <aside className="h-screen transition-all ease-in-out sm:p-6 p-3 border-e border-r-black z-10 backdrop-blur-sm opacity-90 fixed sm:w-72 w-16 mt-[64px]">
@@ -41,6 +44,7 @@ const Sidebar = (props: Props) => {
           <FaAmazon className="sm:size-9 size-7" />
           <h2 className="font-bold uppercase hidden sm:block">Amazon</h2>
         </div>
+        <LogOutModal isOpen={isOpen} onOpenChange={onOpenChange}/>
         {user ? (
           <Dropdown backdrop="blur">
             <DropdownTrigger>
@@ -69,6 +73,12 @@ const Sidebar = (props: Props) => {
               <DropdownItem key="profile">
                 <Link className="block w-full h-full" href={"/profile"}>
                   Profile
+                </Link>
+              </DropdownItem>
+              <DropdownItem key="Lgout" color="danger" className="text-danger">
+                {/* @ts-ignore */}
+                <Link className="block w-full h-full" href={"/profile"} onClick={onOpen} onPress={onOpen}>
+                  Logout
                 </Link>
               </DropdownItem>
             </DropdownMenu>
