@@ -7,19 +7,16 @@ import { useProfile } from "@/src/hooks/useProfile";
 import { NextPage } from "next";
 import React from "react";
 import { ProductService } from "@/src/services/product/product.service";
+import { Spinner } from "@heroui/react";
 
 type Props = {};
 
-const Favorites: NextPage = () => {
-  const {data: recentlyViewed} = useQuery({
-      queryKey: ['recently-viewed'],
-      queryFn: async () => {
-        return await ProductService.getRecentlyViewed()
-      },
-      staleTime: 1000 * 60 * 5, // 5 минут
-      refetchOnWindowFocus: false,
-    })
 
+const Favorites: NextPage = () => {
+  const { profile,  isLoading} = useProfile();
+
+
+  if (isLoading) return <Spinner size="md" className="w-full flex items-center justify-center h-screen"/>
 
   return (
         <div className="w-[1200px] max-w-full mx-auto ease-linear transition-all">
@@ -27,9 +24,9 @@ const Favorites: NextPage = () => {
             <h1 className="text-5xl pt-5 pb-5 font-bold">Favorites</h1>
           </Heading>
           
-            {recentlyViewed?.length ? (
+            {profile?.favorites.length ? (
               <div className="grid grid-cols-2 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-2 ">
-                {recentlyViewed.map((product) => (
+                {profile.favorites.map((product) => (
                   <FavoriteProductItem key={product.id} product={product} />
                 ))}
               </div>

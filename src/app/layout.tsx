@@ -36,7 +36,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="relative ">
             <Sidebar />
           </div>
-          <main className=" sm:ml-80 ml-24 sm:mr-3 mr-2 pt-[64px] transition-all ease-in-out">
+          <main className=" sm:ml-80 ml-20 sm:mr-3 mr-2 pt-[64px] transition-all ease-in-out">
             {children}
           </main>
         </Providers>

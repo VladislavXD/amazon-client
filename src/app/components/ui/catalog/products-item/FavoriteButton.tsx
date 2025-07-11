@@ -55,7 +55,7 @@ const AddToFavoriteButton: FC<{ productId: number }> = ({ productId }) => {
       tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none 
       data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus 
       data-[focus-visible=true]:outline-offset-2 text-medium  rounded-large px-0 !gap-0 
-      transition-transform-colors-opacity motion-reduce:transition-none bg-default/40 min-w-12 w-12 h-12 
+      transition-transform-colors-opacity motion-reduce:transition-none bg-default/40 min-w-12 md:w-12 md:h-12 w-10 h-10 
       data-[hover=true]:opacity-hover text-default-600"   isIconOnly onClick={() => debounceMutate()}>
         <HeartIcon 
         fill={`${isExists ? '#E0155D' : 'white'}`}

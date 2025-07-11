@@ -79,6 +79,14 @@ export default function ProfileDropdown(onOpen: {onOpen?: () => void}) {
           Edit Profile
         </DropdownItem>
         <DropdownItem
+          key="edit"
+          shortcut="⌘⇧s"
+          onClick={()=> onOpen.onOpen?.()}
+          startContent={<EditDocumentIcon className={iconClasses} />}
+        >
+          Change Avatar
+        </DropdownItem>
+        <DropdownItem
           key="delete"
           className="text-danger"
           color="danger"

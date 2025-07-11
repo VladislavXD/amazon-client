@@ -28,7 +28,7 @@ console.log(products, 'popular products');
       
       <Swiper
         slidesPerView={3}
-        speed={11000}
+        speed={15000}
         parallax={true}
         freeMode={true}
         

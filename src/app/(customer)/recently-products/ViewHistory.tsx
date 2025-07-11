@@ -1,18 +1,15 @@
 "use client";
-import { NextPageAuth } from "@/src/providers/authProvider/authPage.types";
 import Heading from "../../components/Heading";
 import FavoriteProductItem from "../../components/ui/catalog/products-item/FavoriteProductItem";
-import ProductItem from "../../components/ui/catalog/products-item/ProductItem";
-import { useProfile } from "@/src/hooks/useProfile";
 import { NextPage } from "next";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ProductService } from "@/src/services/product/product.service";
+import { Spinner } from "@heroui/react";
 
-type Props = {};
 
-const ViewsHistory: NextPageAuth = () => {
-    const {data: recentlyViewed} = useQuery({
+const ViewsHistory: NextPage = () => {
+    const {data: recentlyViewed, isLoading} = useQuery({
     queryKey: ['recently-viewed'],
     queryFn: async () => {
       return await ProductService.getRecentlyViewed()
@@ -23,6 +20,7 @@ const ViewsHistory: NextPageAuth = () => {
 
 
 
+ if (isLoading) return <Spinner size="md" className="w-full flex items-center justify-center h-screen"/>
 
 
   return (
@@ -45,6 +43,5 @@ const ViewsHistory: NextPageAuth = () => {
   );
 };
 
-ViewsHistory.isOnlyUser = true;
 
 export default ViewsHistory;

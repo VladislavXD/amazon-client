@@ -8,7 +8,6 @@ export interface IUser {
 	avatarUrl: string
 	phone: string
 	isAdmin: boolean
-
 }
 
 export interface IFullUser extends IUser {

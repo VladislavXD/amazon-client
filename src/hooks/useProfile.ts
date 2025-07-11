@@ -15,5 +15,5 @@ export const useProfile = () => {
     enabled: !!user
   });
   
-  return { profile: data}
+  return { profile: data, isLoading, isError}
 }
