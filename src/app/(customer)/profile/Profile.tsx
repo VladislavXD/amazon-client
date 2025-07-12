@@ -17,9 +17,12 @@ import ImageInput from "./ImageInput";
 const Profile: NextPage = () => {
   const { profile } = useProfile();
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
+ 
+
+  
 
 
-  return (
+  return (  
 
 
        <>
@@ -34,7 +37,7 @@ const Profile: NextPage = () => {
 
           <div className="flex-shrink-0 mx-auto md:mx-0 md:flex">
           
-            <ImageInput initialImage={profile?.avatarUrl}/>
+            <ImageInput  key={profile?.avatarUrl} initialImage={profile?.avatarUrl}/>
           </div>
           
           {/* Divider - показывается только на десктопе */}

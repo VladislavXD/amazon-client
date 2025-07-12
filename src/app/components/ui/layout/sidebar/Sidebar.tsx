@@ -37,6 +37,9 @@ const Sidebar = (props: Props) => {
   const { orders } = useOrders();
   const {onOpen, isOpen, onOpenChange} = useDisclosure();
 
+
+
+
   return (
     <aside className="h-screen transition-all ease-in-out sm:p-6 p-3 border-e border-r-black z-10 backdrop-blur-sm opacity-90 fixed sm:w-72 w-16 mt-[64px]">
       <div>
@@ -50,7 +53,7 @@ const Sidebar = (props: Props) => {
             <DropdownTrigger>
               <User
                 as="button"
-                key={profile?.id}
+                key={profile?.avatarUrl}
                 avatarProps={{
                   isBordered: true,
                   src: `${profile?.avatarUrl}`,
@@ -64,7 +67,7 @@ const Sidebar = (props: Props) => {
             </DropdownTrigger>
 
             <DropdownMenu aria-label="User Actions" variant="flat">
-              <DropdownItem key="profile" className="h-14 gap-2">
+              <DropdownItem key={`${profile?.email}`} className="h-14 gap-2">
                 <p className="font-bold">Signed in as</p>
                 <p className="font-bold opacity-70 text-gray">
                   {profile?.email}

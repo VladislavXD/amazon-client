@@ -34,12 +34,16 @@ export const UserService = {
     });
   },
   
-  async uploadAvatar(data: TypeData) {
-    return instance<IUser>({
-      url: `/users/avatar`,
-      method: "POST",
-      data
-    });
+  async uploadAvatar(formdata: FormData) {
+    return instance.post<{avatarUrl: string}>(
+      "/users/avatar",
+      formdata,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        }
+      }
+    );
   },
   async toggleFavorite(productId: string | number) {
     return instance<IUser>({

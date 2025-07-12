@@ -1,6 +1,5 @@
 import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, cn, useDisclosure} from "@heroui/react";
 import { RiMoreFill } from "react-icons/ri";
-import ProfileModal from "./profileModal";
 
 
 
@@ -77,14 +76,6 @@ export default function ProfileDropdown(onOpen: {onOpen?: () => void}) {
           startContent={<EditDocumentIcon className={iconClasses} />}
         >
           Edit Profile
-        </DropdownItem>
-        <DropdownItem
-          key="edit"
-          shortcut="⌘⇧s"
-          onClick={()=> onOpen.onOpen?.()}
-          startContent={<EditDocumentIcon className={iconClasses} />}
-        >
-          Change Avatar
         </DropdownItem>
         <DropdownItem
           key="delete"
