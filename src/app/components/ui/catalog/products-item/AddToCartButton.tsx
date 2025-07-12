@@ -7,7 +7,7 @@ import Link from 'next/link'
 import React, { FC } from 'react'
 import { CiHeart } from "react-icons/ci";
 import { IoHeartDislikeOutline } from "react-icons/io5";
-import {addToast} from "@heroui/react";
+import {addToast, Image} from "@heroui/react";
 
 
 const AddToCartButton: FC<{product: IProduct}> = ({product}) => {
@@ -41,12 +41,26 @@ const AddToCartButton: FC<{product: IProduct}> = ({product}) => {
               price: product.price,
             });
             addToast({
-              title: "✅ Добавлено в корзину",
-              description: `${product.name} успешно добавлен в корзину`,
-              timeout: 3000,
-              shouldShowTimeoutProgress: true,
-              hideIcon: true
-            });
+                title: (
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={product.images[0] || "/placeholder.jpg"}
+                      alt={product.name}
+                      className="w-10 h-10 object-cover rounded-lg"
+                      onError={(e) => {
+                        e.currentTarget.src = "/placeholder.jpg";
+                      }}
+                    />
+                    <div>
+                      <div className="font-semibold text-sm">✅ Добавлено в корзину</div>
+                      <div className="text-xs text-gray-600">{product.name}</div>
+                    </div>
+                  </div>
+                ),
+                timeout: 4000,
+                shouldShowTimeoutProgress: true,
+                hideIcon: true,
+              });
           }
         }}
         color="primary"

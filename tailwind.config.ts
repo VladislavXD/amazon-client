@@ -29,6 +29,9 @@ const config: Config = {
   theme: {
     colors,
     extend: {
+			screens: {
+				'xs': '330px'
+			},
       fontSize: {
 				xs: '0.82rem',
 				sm: '0.98rem',

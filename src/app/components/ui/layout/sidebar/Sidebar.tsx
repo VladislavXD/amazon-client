@@ -27,6 +27,9 @@ import { OrdersService } from "@/src/services/order.service";
 import { useOrders } from "@/src/hooks/useOrder";
 import { LiaHistorySolid } from "react-icons/lia";
 import LogOutModal from "./Modal";
+import { PiShoppingCartSimpleThin } from "react-icons/pi";
+import { useCart } from "@/src/hooks/useCart";
+
 
 type Props = {};
 
@@ -37,7 +40,8 @@ const Sidebar = (props: Props) => {
   const { orders } = useOrders();
   const {onOpen, isOpen, onOpenChange} = useDisclosure();
 
-
+    const { items } = useCart();
+  
 
 
   return (
@@ -176,6 +180,34 @@ const Sidebar = (props: Props) => {
              flex sm:justify-start justify-center pl-0 sm:pl-5 my-3 text-default-600 `}
           >
             <p className="sm:block hidden pt-1 pl-2">Recently</p>
+          </Button>
+          <Button
+            isIconOnly
+            as={Link}
+            href="/cart"
+            variant={pathname === "/cart" ? "shadow" : "flat"}
+            startContent={
+              <Badge
+                content={items.length}
+                color="danger"
+                placement="top-left"
+                className={`${
+                  !items.length && "opacity-0"
+                }
+                transition-all ease-in-out`}
+              >
+              <PiShoppingCartSimpleThin className="text-default-600 size-8 " />
+              </Badge>
+            }
+            className={`w-full  rounded-large 
+               ${
+                 pathname === "/cart"
+                   ? "bg-[#28292D]"
+                   : "bg-[#000] hover:bg-[rgb(25,23,29)]"
+               }
+             flex sm:justify-start justify-center pl-0 sm:pl-5 my-3 text-default-600 `}
+          >
+            <p className="sm:block hidden pt-1 pl-2">Cart</p>
           </Button>
 
           {user && (

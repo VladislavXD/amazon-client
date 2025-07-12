@@ -27,6 +27,14 @@ import ProductRating from "../../components/ui/catalog/products-item/ProductRati
 import { useAuth } from "@/src/hooks/useAuth";
 import { useProfile } from "@/src/hooks/useProfile";
 import { useProductPageView } from "../../../hooks/useProductViews";
+import { useActions } from "@/src/hooks/useActions";
+import { addToast } from "@heroui/toast";
+import { useCart } from "@/src/hooks/useCart";
+import Link from "next/link";
+import { CiStar } from "react-icons/ci";
+import { convertPrice } from "../../utils/ConvertPrice";
+
+
 
 interface IProductPage {
   initialProduct: IProduct;
@@ -50,6 +58,7 @@ const Product = ({
     // { label: "Мрамор", value: "marble", image: "/textures/marble.png" },
   ];
   const sizes = ["36", "37", "38", "39", "40", "41", "42"];
+
 
   const [selectedColor, setSelectedColor] = useState("#FF0000");
   const [selectedSize, setSelectedSize] = useState("36");
@@ -110,7 +119,10 @@ const Product = ({
   });
     console.log("ProductService.getBySlug RESPONSE", product);
   
+    const {addToCart, removeFromCart} = useActions()
+    const {items} = useCart()
 
+    const currentElement = items.find( cartItem => cartItem.product.id == product.id)
   
   
   return (
@@ -124,7 +136,7 @@ const Product = ({
             <div className="relative flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
               <div className="relative h-full w-full flex-none">
                 <div className="max-w-fit min-w-min inline-flex items-center justify-between box-border whitespace-nowrap px-2 text-medium rounded-full absolute left-3 top-3 z-20 h-10 gap-1 bg-background/60 pl-3 pr-2 text-foreground/90 shadow-medium backdrop-blur-md backdrop-saturate-150 dark:bg-default-100/50">
-                  test
+                  <CiStar color="yellow" /> Popular
                 </div>
                 <div className="relative shadow-black/5 shadow-none rounded-large">
                 <ProductsGallery images={[img.src, img.src, img.src, img.src, img.src, img.src, img.src]}/>
@@ -157,7 +169,7 @@ const Product = ({
                   
                   </div>
                 </div>
-                <p className="text-xl font-medium tracking-tight">$ {product.price}</p>
+                <p className="text-xl font-medium tracking-tight">{convertPrice(product.price)}</p>
                 <div className="mt-4">
                   {/* <div className="sr-only">{product.description}</div> */}
                   <div className="line-clamp-3 text-medium text-default-500">
@@ -223,14 +235,57 @@ const Product = ({
                   </Accordion>
                 </div>
                 <div className="mt-2 flex gap-2">
-                  <Button
-                    className="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 px-6 min-w-24 h-12 gap-3 rounded-large w-full [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-primary text-primary-foreground data-[hover=true]:opacity-hover text-medium font-medium"
+                  {currentElement ? (
+                    <Link href={`/cart`} className="w-full">
+                      <Button 
+                      isIconOnly
+                      color="primary" 
+                      className="w-full h-12"
+                      variant="bordered">
+                        Buy
+                      </Button>
+                    </Link>
+
+                  ) : (
+                    <Button
+                    className="w-full h-12"
                     color="primary"
                     variant="solid"
                     startContent={<IoCartOutline className="size-6" />}
-                  >
+                    onPress={() => {
+                      if (!currentElement){
+                      addToCart({
+                        product,
+                        quantity: 1,
+                        price: product.price,
+                      });
+                      addToast({
+                        title: (
+                        <div className="flex items-center gap-3">
+                          <img
+                          src={product.images[0] || "/placeholder.jpg"}
+                          alt={product.name}
+                          className="w-10 h-10 object-cover rounded-lg"
+                          onError={(e) => {
+                            e.currentTarget.src = "/placeholder.jpg";
+                          }}
+                          />
+                          <div>
+                          <div className="font-semibold text-sm">✅ Добавлено в корзину</div>
+                          <div className="text-xs text-gray-600">{product.name}</div>
+                          </div>
+                        </div>
+                        ),
+                        timeout: 4000,
+                        shouldShowTimeoutProgress: true,
+                        hideIcon: true,
+                      });
+                      }
+                    }}
+                    >
                     Add to Cart
-                  </Button>
+                    </Button>
+    )}
                   <AddToFavoriteButton productId={3} />
                 </div>
               </div>

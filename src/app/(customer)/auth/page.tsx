@@ -6,7 +6,7 @@ import { NO_INDEX_PAGE } from '../../constants/seo.constants'
 import AuthPage from './Auth'
 
 export const metadata: Metadata = {
-	title: 'Profile',
+	title: 'Authentication',
 	...NO_INDEX_PAGE
 }
 

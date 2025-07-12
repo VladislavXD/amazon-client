@@ -32,7 +32,7 @@ const SelectCategory: FC = () => {
   const params = new URLSearchParams(searchParams)
   params.set('category', selectedKey)
 
-  router.push(`?${params.toString()}`)
+  router.replace(`?${params.toString()}`, { scroll: false });
 }
 
 const handleSort = (keys: any) => {
@@ -41,7 +41,7 @@ const handleSort = (keys: any) => {
   const params = new URLSearchParams(searchParams)
   params.set('sort', selectedSort)
 
-  router.push(`?${params.toString()}`)
+  router.replace(`?${params.toString()}`, { scroll: false });
 }
 
   
