@@ -10,9 +10,9 @@ import NextTopLoader from "nextjs-toploader";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Amazon Clone",
+  title: "Azura ",
   description: "E-commerce platform built with Next.js",
-  keywords: "ecommerce, shopping, amazon, clone",
+  keywords: "ecommerce, shopping, azura, clone",
 };
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
