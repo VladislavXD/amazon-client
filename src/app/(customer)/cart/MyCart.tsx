@@ -7,7 +7,8 @@ import { Card, CardBody, CardHeader, Button, Divider, Input, Modal, ModalContent
 import { convertPrice } from "../../utils/ConvertPrice";
 import CartItem from "./CartItem";
 import { FiShoppingCart } from "react-icons/fi";
-import Link from "next/link";
+import { Link } from "@heroui/react";
+
 
 const MyCart: NextPage = () => {
   const { items } = useCart();

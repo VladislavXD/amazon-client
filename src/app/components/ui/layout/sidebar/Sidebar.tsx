@@ -20,15 +20,16 @@ import { CiSettings } from "react-icons/ci";
 import LogOut from "./Modal";
 import { useAuth } from "@/src/hooks/useAuth";
 import { CiLogin } from "react-icons/ci";
-import { FaBorderTopLeft } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
-import { OrdersService } from "@/src/services/order.service";
 import { useOrders } from "@/src/hooks/useOrder";
-import { LiaHistorySolid } from "react-icons/lia";
 import LogOutModal from "./Modal";
 import { PiShoppingCartSimpleThin } from "react-icons/pi";
 import { useCart } from "@/src/hooks/useCart";
+import { GoHistory } from "react-icons/go";
+import { LiaBorderStyleSolid } from "react-icons/lia";
+import AMAZON_LOGO from '@/publick/AZURA_MAIN_LOGO.svg'
+import Image from "next/image";
+
 
 
 type Props = {};
@@ -47,9 +48,10 @@ const Sidebar = (props: Props) => {
   return (
     <aside className="h-screen transition-all ease-in-out sm:p-6 p-3 border-e border-r-black z-10 backdrop-blur-sm opacity-90 fixed sm:w-72 w-16 mt-[64px]">
       <div>
-        <div className="flex gap-2 items-center px-3 mb-10">
-          <FaAmazon className="sm:size-9 size-7" />
-          <h2 className="font-bold uppercase hidden sm:block">Amazon</h2>
+        <div className="flex gap-2 items-center px-3 mb-10 ">
+          {/* <FaAmazon className="sm:size-9 size-7" /> */}
+          <Image src={AMAZON_LOGO} alt="AMAZON_LOGO" className="size-16 w-9 h-9"/>
+          <h2 className="font-bold uppercase hidden sm:block">AZURA</h2>
         </div>
         <LogOutModal isOpen={isOpen} onOpenChange={onOpenChange}/>
         {user ? (
@@ -168,7 +170,8 @@ const Sidebar = (props: Props) => {
               //   }
               //   transition-all ease-in-out`}
               // >
-              <LiaHistorySolid className="text-default-600 size-8 " />
+
+              <GoHistory className="text-default-600 size-6 " />
               // </Badge>
             }
             className={`w-full  rounded-large 
@@ -196,7 +199,7 @@ const Sidebar = (props: Props) => {
                 }
                 transition-all ease-in-out`}
               >
-              <PiShoppingCartSimpleThin className="text-default-600 size-8 " />
+              <PiShoppingCartSimpleThin className="text-default-600 size-7 " />
               </Badge>
             }
             className={`w-full  rounded-large 
@@ -224,7 +227,8 @@ const Sidebar = (props: Props) => {
                   className={`${!orders?.length && " opacity-0"} 
                 transition-all ease-in-out`}
                 >
-                  <FaBorderTopLeft className="text-default-600 size-7 " />
+
+                  <LiaBorderStyleSolid className="text-default-600 size-7 " />
                 </Badge>
               }
               className={`w-full  
@@ -242,12 +246,12 @@ const Sidebar = (props: Props) => {
           <Button
             isIconOnly
             as={Link}
-            href="test"
-            variant={pathname === "/setings" ? "shadow" : "flat"}
+            href="settings"
+            variant={pathname === "/settings" ? "shadow" : "flat"}
             startContent={<CiSettings className="text-default-600 size-8" />}
             className={`w-full rounded-large 
              ${
-               pathname === "/setings"
+               pathname === "/settings"
                  ? "bg-[#28292D]"
                  : "bg-[#000] hover:bg-[rgb(25,23,29)]"
              }

@@ -13,7 +13,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { FC, useState } from "react";
-import amazonImage from "@/publick/amazonIcon.svg";
+import amazonImage from "@/publick/AZURA_LOGO.svg";
 import { PiShoppingCartThin } from "react-icons/pi";
 import { useCart } from "@/src/hooks/useCart";
 import Cart from './cart/Cart'
@@ -56,7 +56,7 @@ const Nav: FC = () => {
               <Image
                 src={amazonImage}
                 alt="Amazon icon"
-                className="size-28 fill-white"
+                className="size-28 fill-white "
               />
             </Link>
           </NavbarItem>
